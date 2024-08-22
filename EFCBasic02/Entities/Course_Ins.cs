@@ -7,20 +7,23 @@ using System.Reflection.Metadata.Ecma335;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace EFCBasic02
+namespace EFCBasic02.Entities
 {
-    [Table("Topic")]
-    internal class Topic
+    [Table("Course_Ins")]
+    internal class Course_Ins
     {
-        
-        [Key]
+
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
-        public int topicId { get; set; }
+        public int Inst_Id { get; set; }
 
         [Required]
-        [Column(TypeName ="varchar")]
-        public string Name { get; set; }
+        public int Course_ID { get; set; }
 
-        public ICollection<Course> Courses { get; set; } = new HashSet<Course>();
+        [Column(TypeName = "float")]
+        public double Evaluate { get; set; }
+
+        public Course course  { get; set; }
+
+        public Instructor instructor { get; set; }
     }
 }
