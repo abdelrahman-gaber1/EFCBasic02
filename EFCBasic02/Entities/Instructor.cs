@@ -6,25 +6,25 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace EFCBasic02
+namespace EFCBasic02.Entities
 {
     [Table("Instructor")]
     internal class Instructor
     {
-        
+
         [Key]
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public int instractorId { get; set; }
-        
+
         [Required]
-        [Column(TypeName ="nvarchar")]
+        [Column(TypeName = "nvarchar")]
         public string Name { get; set; }
         public double Bouns { get; set; }
 
-        [Column(TypeName ="money")]
+        [Column(TypeName = "money")]
         [Range(1000, 60000)]
         public double Salary { get; set; }
-        
+
         [EmailAddress]
         public string? Address { get; set; }
 
@@ -35,5 +35,9 @@ namespace EFCBasic02
 
         [InverseProperty("Instructor")]
         public Department Dept { get; set; }
+
+        public ICollection<Course_Ins> instructorCourse { get; set; } = new HashSet<Course_Ins>();
+
+
     }
 }
